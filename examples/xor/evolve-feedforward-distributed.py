@@ -1,5 +1,5 @@
 """
-A distributed version of XOR using neat-cnn.distributed.
+A distributed version of XOR using neat.distributed.
 
 Since XOR is a simple experiment, a distributed version probably won't run any
 faster than the single-process version, due to the overhead of
@@ -11,7 +11,7 @@ you should see a significant performance improvement by evaluating across
 multiple machines.
 
 This example is only intended to show how to do a distributed experiment
-in neat-cnn-python.  You can of course roll your own parallelism mechanism
+in neat-python.  You can of course roll your own parallelism mechanism
 or inherit from DistributedEvaluator if you need to do something more
 complicated.
 """
@@ -77,7 +77,7 @@ def run(config_file, addr, authkey, mode, workers):
                             # wait at most 10 seconds for the result
         mode=mode,  # wether this is the primary or a secondary node
                     # in most case you can simply pass
-                    # 'neat-cnn.distributed.MODE_AUTO' as the mode.
+                    # 'neat.distributed.MODE_AUTO' as the mode.
                     # This causes the DistributedEvaluator to
                     # determine the mode by checking if address
                     # points to the localhost.
@@ -152,8 +152,8 @@ if __name__ == '__main__':
     parser.add_argument(
         "--authkey",
         action="store",
-        help="authkey to use (default: 'neat-cnn-python')",
-        default="neat-cnn-python",
+        help="authkey to use (default: 'neat-python')",
+        default="neat-python",
         dest="authkey",
         )
     parser.add_argument(

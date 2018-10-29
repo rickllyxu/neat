@@ -19,7 +19,7 @@ def assert_almost_equal(a, b):
 
 
 def test_softmax():
-    """Test the neat-cnn.math_utils.softmax function."""
+    """Test the neat.math_utils.softmax function."""
     # Test data - below is from Wikipedia Softmax_function page.
     test_data = [([1.0, 2.0, 3.0, 4.0, 1.0, 2.0, 3.0], [0.02364054302159139, 0.06426165851049616,
                                                         0.17468129859572226, 0.47483299974438037,
@@ -31,7 +31,7 @@ def test_softmax():
         for a, b in zip(test[1], results_list):
             assert_almost_equal(a, b)
 
-    #softmax_result = list(neat-cnn.math_util.softmax([1.0, 2.0, 3.0, 4.0, 1.0, 2.0, 3.0]))
+    #softmax_result = list(neat.math_util.softmax([1.0, 2.0, 3.0, 4.0, 1.0, 2.0, 3.0]))
     #print("Softmax for [1, 2, 3, 4, 1, 2, 3] is {!r}".format(softmax_result))
 
 

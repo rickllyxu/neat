@@ -109,7 +109,7 @@ for i in range(0, 10):
 """
 # Show output of the most fit genome against training data.
 print('\nOutput:')
-winner_net = neat-cnn.nn.FeedForwardNetwork.create(winner, config)
+winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
 for xi, xo in zip(xor_inputs, xor_outputs):
     output = winner_net.activate(xi)
     print("  input {!r}, expected output {!r}, got {!r}".format(xi, xo, output))

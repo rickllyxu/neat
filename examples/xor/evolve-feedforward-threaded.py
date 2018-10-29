@@ -1,5 +1,5 @@
 """
-A threaded version of XOR using neat-cnn.threaded.
+A threaded version of XOR using neat.threaded.
 
 Since most python implementations use a GIL, a threaded version probably won't
 run any faster than the single-threaded version.
@@ -11,7 +11,7 @@ you should see a significant performance improvement by evaluating using
 multiple threads.
 
 This example is only intended to show how to do a threaded experiment
-in neat-cnn-python.  You can of course roll your own threading mechanism
+in neat-python.  You can of course roll your own threading mechanism
 or inherit from ThreadedEvaluator if you need to do something more complicated.
 """
 

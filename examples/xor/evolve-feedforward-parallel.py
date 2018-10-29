@@ -1,5 +1,5 @@
 """
-A parallel version of XOR using neat-cnn.parallel.
+A parallel version of XOR using neat.parallel.
 
 Since XOR is a simple experiment, a parallel version probably won't run any
 faster than the single-process version, due to the overhead of
@@ -10,7 +10,7 @@ If your evaluation function is what's taking up most of your processing time
 you should see a significant performance improvement by evaluating in parallel.
 
 This example is only intended to show how to do a parallel experiment
-in neat-cnn-python.  You can of course roll your own parallelism mechanism
+in neat-python.  You can of course roll your own parallelism mechanism
 or inherit from ParallelEvaluator if you need to do something more complicated.
 """
 

@@ -365,7 +365,7 @@ def test_parallel():
 
 
 def test_threaded_evaluation():
-    """Tests a neat-cnn evolution using neat-cnn.threaded.ThreadedEvaluator"""
+    """Tests a neat evolution using neat.threaded.ThreadedEvaluator"""
     # Load configuration.
     local_dir = os.path.dirname(__file__)
     config_path = os.path.join(local_dir, 'test_configuration')
@@ -390,7 +390,7 @@ def test_threaded_evaluation():
 
 
 def test_threaded_evaluator():
-    """Tests general functionality of neat-cnn.threaded.ThreadedEvaluator"""
+    """Tests general functionality of neat.threaded.ThreadedEvaluator"""
     n_workers = 3
     e = neat.ThreadedEvaluator(n_workers, eval_dummy_genome_nn)
     try:

@@ -1,4 +1,4 @@
-"""tests for neat-cnn.distributed"""
+"""tests for neat.distributed"""
 from __future__ import print_function
 
 import socket
@@ -31,7 +31,7 @@ def eval_dummy_genome_nn(genome, config):
 
 
 def test_chunked():
-    """Test for neat-cnn.distributed.chunked"""
+    """Test for neat.distributed.chunked"""
     # test chunked(range(110), 10)
     # => 11 chunks of 10 elements
     d110 = list(range(110))
@@ -49,13 +49,13 @@ def test_chunked():
     except ValueError:
         pass
     else:
-        raise Exception("neat-cnn.distributed.chunked(range(10), 0) did not raise an exception!")
+        raise Exception("neat.distributed.chunked(range(10), 0) did not raise an exception!")
     try:
         chunked(range(10), 1.1)
     except ValueError:
         pass
     else:
-        raise Exception("neat-cnn.distributed.chunked(range(10), 1.1) did not raise an exception!")
+        raise Exception("neat.distributed.chunked(range(10), 1.1) did not raise an exception!")
     # test chunked(range(13, 3))
     # => 4 chunks of 3 elements, 1 chunk of 1 element
     d13 = list(range(13))
@@ -71,7 +71,7 @@ def test_chunked():
 
 
 def test_host_is_local():
-    """test for neat-cnn.distributed.host_is_local"""
+    """test for neat.distributed.host_is_local"""
     tests = (
         # (hostname or ip, expected value)
         ("localhost", True),

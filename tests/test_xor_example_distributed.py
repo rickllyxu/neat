@@ -72,7 +72,7 @@ def run_primary(addr, authkey, generations):
             print("input {!r}, expected output {!r}, got {!r}".format(xi, xo, output))
 
     if (checkpointer.last_generation_checkpoint >= 0) and (checkpointer.last_generation_checkpoint < 100):
-        filename = 'neat-cnn-checkpoint-{0}'.format(checkpointer.last_generation_checkpoint)
+        filename = 'neat-checkpoint-{0}'.format(checkpointer.last_generation_checkpoint)
         print("Restoring from {!s}".format(filename))
         p2 = neat.checkpoint.Checkpointer.restore_checkpoint(filename)
         p2.add_reporter(neat.StdOutReporter(True))

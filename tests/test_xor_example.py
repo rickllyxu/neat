@@ -33,9 +33,9 @@ def test_xor_example(uniform_weights=False):
 
     if uniform_weights:
         config.genome_config.weight_init_type = 'uniform'
-        filename_prefix = 'neat-cnn-checkpoint-test_xor_uniform-'
+        filename_prefix = 'neat-checkpoint-test_xor_uniform-'
     else:
-        filename_prefix = 'neat-cnn-checkpoint-test_xor-'
+        filename_prefix = 'neat-checkpoint-test_xor-'
 
     # Create the population, which is the top-level object for a NEAT run.
     p = neat.Population(config)

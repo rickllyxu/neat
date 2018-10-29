@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/neat-cnn.iml" filepath="$PROJECT_DIR$/.idea/neat-cnn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../neat/.idea/neat.iml" filepath="$PROJECT_DIR$/../neat/.idea/neat.iml" />
     </modules>
   </component>
 </project>

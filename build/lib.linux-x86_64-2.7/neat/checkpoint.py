@@ -21,7 +21,7 @@ class Checkpointer(BaseReporter):
     """
 
     def __init__(self, generation_interval=100, time_interval_seconds=300,
-                 filename_prefix='neat-cnn-checkpoint-'):
+                 filename_prefix='neat-checkpoint-'):
         """
         Saves the current state (at the end of a generation) every ``generation_interval`` generations or
         ``time_interval_seconds``, whichever happens first.
