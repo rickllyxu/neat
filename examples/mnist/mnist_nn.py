@@ -23,19 +23,6 @@ eval_image = train_images[:eval_len]
 eval_labels = train_labels[:eval_len]
 
 """
-train_images.shape
-
-len(train_labels)
-
-train_labels
-
-test_images.shape
-
-len(test_labels)
-
-test_labels
-"""
-"""
 network = models.Sequential()
 network.add(layers.Dense(512, activation='relu', input_shape=(28 * 28,)))
 network.add(layers.Dense(10, activation='softmax'))
@@ -81,6 +68,10 @@ config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                      neat.DefaultSpeciesSet, neat.DefaultStagnation,
                      'config-mnist')
 
+# reset result file
+res = open("result.txt", "w")
+res.close()
+
 # Create the population, which is the top-level object for a NEAT run.
 p = neat.Population(config)
 
@@ -93,6 +84,7 @@ winner = p.run(eval_genomes)
 # Display the winning genome.
 print('\nBest genome:\n{!s}'.format(winner))
 
+# print results on evaluate set
 winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
 for i in range(0, 10):
     output = winner_net.activate(eval_image[i])
@@ -104,6 +96,14 @@ for i in range(0, 10):
     print(eval_labels[i], fitness)
     print("got {!r}".format(output))
 
+# test on test dataset
+hitCount = 0
+for i in range(0, len(test_labels)):
+    output = winner_net.activate(test_images[i])
+    result = output.index(max(output))
+    if (result == test_labels[i]):
+        hitCount += 1
+print("hit {0} of {1}".format(hitCount, len(eval_labels)))
 # visualize.draw_net(config, winner, True, node_names=node_names)
 
 """
