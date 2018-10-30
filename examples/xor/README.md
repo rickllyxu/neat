@@ -1,11 +1,11 @@
 ## XOR examples ##
 
 The scripts in this directory show how to evolve networks that implement the 2-input XOR function.  These XOR examples
-are intended to be "Hello World" style samples, so that you can see the minimal amount of code you need to write in order
-to make use of *neat-python*. 
+are intendedo be "Hello mplWorld" style saes, so that you can see the minimal amount of code you need to write in order
+ simple examples are sometimes also useful as a debugging tool for *neat-python*, because you can step through the 
+NEAT-to make use  tof *neat-python*. 
 
-These simple examples are sometimes also useful as a debugging tool for *neat-python*, because you can step through the 
-NEAT-specific code and watch what happens without getting swamped by the complexity of the networks and/or application code.
+Thesespecific code and watch what happens without getting swamped by the complexity of the networks and/or application code.
 
 Note that there is a significant amount of duplication between these scripts, and this is intentional.  The goal is to 
 make it easier to see what the example is doing, without making the user dig through a bunch of code that is not 

@@ -88,6 +88,8 @@ class BaseReporter(object):
 
 
 class StdOutReporter(BaseReporter):
+
+    bestFitness = 0.0
     """Uses `print` to output information about the run; an example reporter class."""
     def __init__(self, show_species_detail):
         self.show_species_detail = show_species_detail
@@ -144,7 +146,12 @@ class StdOutReporter(BaseReporter):
                                                                                  best_genome.size(),
                                                                                  best_species_id,
                                                                                  best_genome.key))
-
+ # andrew add
+        if (best_genome.fitness > self.bestFitness):
+            res = open("result.txt", "a")
+            res.write('\nBest genome:\n{!s}'.format(best_genome))
+            res.close()
+# andrew end
     def complete_extinction(self):
         self.num_extinctions += 1
         print('All species extinct.')

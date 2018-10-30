@@ -42,12 +42,7 @@ print('test_acc:', test_acc)
 
 """
 
-
-# 2-input XOR inputs and expected outputs.
-# mnist_inputs = [(0.0, 0.0), (0.0, 1.0), (1.0, 0.0), (1.0, 1.0)]
-# mnist_outputs = [   (0.0,),     (1.0,),     (1.0,),     (0.0,)]
-
-
+# evaluation function
 def eval_genomes(genomes, config):
     for genome_id, genome in genomes:
         fitness = [10.0] * eval_len
@@ -106,11 +101,3 @@ for i in range(0, len(test_labels)):
 print("hit {0} of {1}".format(hitCount, len(eval_labels)))
 # visualize.draw_net(config, winner, True, node_names=node_names)
 
-"""
-# Show output of the most fit genome against training data.
-print('\nOutput:')
-winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
-for xi, xo in zip(xor_inputs, xor_outputs):
-    output = winner_net.activate(xi)
-    print("  input {!r}, expected output {!r}, got {!r}".format(xi, xo, output))
-"""
