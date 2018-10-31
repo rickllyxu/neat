@@ -145,13 +145,15 @@ class StdOutReporter(BaseReporter):
             'Best fitness: {0:3.5f} - size: {1!r} - species {2} - id {3}'.format(best_genome.fitness,
                                                                                  best_genome.size(),
                                                                                  best_species_id,
-                                                                                 best_genome.key))
+                                                                     best_genome.key))
  # andrew add
         if (best_genome.fitness > self.bestFitness):
             res = open("result.txt", "a")
             res.write('\nBest genome:\n{!s}'.format(best_genome))
             res.close()
 # andrew end
+
+
     def complete_extinction(self):
         self.num_extinctions += 1
         print('All species extinct.')

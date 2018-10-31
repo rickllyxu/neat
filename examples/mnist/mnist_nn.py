@@ -12,10 +12,12 @@ import neat
 
 (train_images, train_labels), (test_images, test_labels) = mnist.load_data()
 
-train_images = train_images.reshape((60000, 28 * 28))
+train_images_sum = 60000
+train_images = train_images.reshape((train_images_sum, 28 * 28))
 train_images = train_images.astype('float32') / 255
 
-test_images = test_images.reshape((10000, 28 * 28))
+test_images_sum = 10000
+test_images = test_images.reshape((test_images_sum, 28 * 28))
 test_images = test_images.astype('float32') / 255
 
 eval_len = 10
@@ -42,21 +44,27 @@ print('test_acc:', test_acc)
 
 """
 
-# evaluation function
-def eval_genomes(genomes, config):
+def hit(label, input, genome):
+    net = neat.nn.FeedForwardNetwork.create(genome, config)
+    output = net.activate(input)
+    result = output.index(max(output))
+    if (result == label):
+        return True
+    else:
+        return False
+
+def eval_genomes(generation, genomes, config):
+    batch_size = 20
     for genome_id, genome in genomes:
-        fitness = [10.0] * eval_len
-        net = neat.nn.FeedForwardNetwork.create(genome, config)
-        for i in range(0, eval_len):
-            minist_inputs = eval_image[i]
-            mnist_outputs = [0.0] * 10
-            mnist_outputs[eval_labels[i]] = 1.0
-            output = net.activate(minist_inputs)
-            for j in range(0, 10):
-                fitness[i] -= (output[j] - mnist_outputs[j]) ** 2
-            output.sort()
-            fitness[i] += output[9] - output[8]
-        genome.fitness = np.mean(fitness)
+        hitCount = 0
+
+        for i in range(generation * batch_size % train_images_sum,
+                      (generation + 1) * batch_size % train_images_sum):
+            mnist_inputs = train_images[i]
+
+            if (hit(train_labels[i], mnist_inputs, genome)):
+                hitCount += 1
+        genome.fitness = hitCount / batch_size
 
 # Load configuration.
 config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
@@ -91,13 +99,20 @@ for i in range(0, 10):
     print(eval_labels[i], fitness)
     print("got {!r}".format(output))
 
+
 # test on test dataset
 hitCount = 0
 for i in range(0, len(test_labels)):
-    output = winner_net.activate(test_images[i])
-    result = output.index(max(output))
-    if (result == test_labels[i]):
+    if (hit(test_labels[i], test_images[i], winner_net)):
         hitCount += 1
-print("hit {0} of {1}".format(hitCount, len(eval_labels)))
+print("hit {0} of {1}".format(hitCount, len(test_labels)))
 # visualize.draw_net(config, winner, True, node_names=node_names)
 
+"""
+# Show output of the most fit genome against training data.
+print('\nOutput:')
+winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
+for xi, xo in zip(xor_inputs, xor_outputs):
+    output = winner_net.activate(xi)
+    print("  input {!r}, expected output {!r}, got {!r}".format(xi, xo, output))
+"""
