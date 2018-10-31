@@ -1,11 +1,9 @@
-import keras
-keras.__version__
-
-from keras.datasets import mnist
-from keras import models
-from keras import layers
-from keras.utils import to_categorical
+# -*- coding: utf-8 -*-
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 import numpy as np
+import tensorflow as tf
+mnist = tf.keras.datasets.mnist
 
 # from __future__ import print_function
 import neat
@@ -54,6 +52,9 @@ def hit(label, input, genome):
         return False
 
 def eval_genomes(generation, genomes, config):
+    import pdb
+    pdb.set_trace()
+    print(generation, genomes)
     batch_size = 20
     for genome_id, genome in genomes:
         hitCount = 0
@@ -62,7 +63,7 @@ def eval_genomes(generation, genomes, config):
                       (generation + 1) * batch_size % train_images_sum):
             mnist_inputs = train_images[i]
 
-            if (hit(train_labels[i], mnist_inputs, genome)):
+            if hit(train_labels[i], mnist_inputs, genome):
                 hitCount += 1
         genome.fitness = hitCount / batch_size
 
@@ -72,8 +73,8 @@ config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                      'config-mnist')
 
 # reset result file
-res = open("result.txt", "w")
-res.close()
+# res = open("result.txt", "w")
+# res.close()
 
 # Create the population, which is the top-level object for a NEAT run.
 p = neat.Population(config)
