@@ -53,7 +53,7 @@ node_delete_prob        = 0.2
 
 # network parameters
 #<<<<<<< Updated upstream
-num_hidden              = 10
+num_hidden              = 100
 #=======
 #num_hidden              = 128
 #>>>>>>> Stashed changes

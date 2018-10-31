@@ -4,7 +4,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 import numpy as np
 import tensorflow as tf
 mnist = tf.keras.datasets.mnist
-
+import random
 # from __future__ import print_function
 import neat
 
@@ -42,7 +42,7 @@ print('test_acc:', test_acc)
 
 """
 
-def hit(label, input, genome):
+def hit(label, input, genome, config):
     net = neat.nn.FeedForwardNetwork.create(genome, config)
     output = net.activate(input)
     result = output.index(max(output))
@@ -51,10 +51,9 @@ def hit(label, input, genome):
     else:
         return False
 
-def eval_genomes(generation, genomes, config):
-    import pdb
-    pdb.set_trace()
-    print(generation, genomes)
+def eval_genomes(genomes, config):
+    generation = random.randint(0, 1000)
+    # print(generation, genomes)
     batch_size = 20
     for genome_id, genome in genomes:
         hitCount = 0
@@ -63,7 +62,7 @@ def eval_genomes(generation, genomes, config):
                       (generation + 1) * batch_size % train_images_sum):
             mnist_inputs = train_images[i]
 
-            if hit(train_labels[i], mnist_inputs, genome):
+            if hit(train_labels[i], mnist_inputs, genome, config):
                 hitCount += 1
         genome.fitness = hitCount / batch_size
 
